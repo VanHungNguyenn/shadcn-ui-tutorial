@@ -1,9 +1,10 @@
 import Header from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Roboto } from 'next/font/google'
+import { Poppins } from 'next/font/google'
+import { ThemeProvider } from '@/components/ThemeProvider'
 
-const roboto = Roboto({
+const poppins = Poppins({
 	weight: '400',
 	subsets: ['latin'],
 })
@@ -20,9 +21,15 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en' suppressHydrationWarning>
-			<body className={roboto.className}>
-				<Header />
-				{children}
+			<body className={poppins.className}>
+				<ThemeProvider
+					attribute='class'
+					defaultTheme='system'
+					enableSystem
+				>
+					<Header />
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	)
